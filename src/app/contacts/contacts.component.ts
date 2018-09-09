@@ -16,4 +16,10 @@ export class ContactsComponent implements OnInit {
   ngOnInit() {
   }
 
+  delete(contact: Contact): void {
+      this.contacts = this.contacts.filter(c => c !== contact);
+      // this.contactService.deleteContact(contact).subscribe();
+  }
+
+
 }
