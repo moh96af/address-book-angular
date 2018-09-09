@@ -1,0 +1,58 @@
+* {
+    box-sizing: border-box;
+}
+ul {
+    list-style-type: none;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding-right: 40px;
+}
+li {
+    flex: 0 0 100%;
+    border: 1px solid grey;
+    padding: 10px 15px 10px 15px;
+    display: flex;
+}
+
+.buttons {
+    display: flex;
+    margin-left: auto;
+    padding: 7px 0 7px 0;
+}
+
+.contact-details{
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-name{
+    font-size: 22px;
+}
+
+.contact-phone{
+    color: grey;
+}
+
+button.new {
+    background-color: #50E600;
+    margin: 10px 0 10px 0;
+}
+
+button.edit {
+    background-color: #F8AA00;
+}
+
+button.delete {
+    background-color: #DB0000;
+    margin-left: 15px;
+}
+
+button {
+    border: 0;
+    font-size: 18px;
+    color: white;
+    padding: 5px;
+    width: 75px;
+    cursor: pointer;
+}

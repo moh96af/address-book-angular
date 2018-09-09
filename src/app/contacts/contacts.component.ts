@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Contact } from '../contact';
+import { CONTACTS} from '../mock-contacts';
 
 @Component({
   selector: 'app-contacts',
@@ -6,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contacts.component.css']
 })
 export class ContactsComponent implements OnInit {
+
+  contacts = CONTACTS;
 
   constructor() { }
 
