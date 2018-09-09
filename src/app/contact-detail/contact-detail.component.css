@@ -1,0 +1,16 @@
+* {
+    box-sizing: border-box;
+}
+
+.contact-details{
+    padding: 15px;
+}
+
+.contact-email{
+    margin-top: 5px;
+    color: grey;
+}
+
+.buttons{
+    margin-right: 15px;
+}

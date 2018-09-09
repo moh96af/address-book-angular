@@ -1,17 +1,17 @@
 <ul class="contacts">
   <li>
     <div class="buttons">
-      <button class="new" (click)="new(contact)">new</button>
+      <button class="new" routerLink="/contact/new-edit/#">new</button>
     </div>
   </li>
   <li *ngFor="let contact of contacts" routerLink="/contact/{{contact.id}}">
       <div class="contact-details">
         <span class="contact-name">{{contact.firstName}}</span>
-        <span class="contact-phone">{{contact.firstName}}</span>
+        <span class="contact-phone">{{contact.phone}}</span>
       </div>
 
       <div class="buttons">
-        <button class="edit" routerLink="/contact/edit/{{contact.id}}">edit</button>
+        <button class="edit" routerLink="/contact/new-edit/{{contact.id}}">edit</button>
         <button class="delete" (click)="delete(contact)">delete</button>
       </div>
   </li>

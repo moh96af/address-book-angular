@@ -1,0 +1,13 @@
+<div class="flex flex-column" *ngIf="contact">
+  <div class="contact-details flex">
+    <span class="contact-name">{{contact.firstName}}</span>
+    <span class="contact-phone">{{contact.phone}}</span>
+    <span class="contact-email">{{contact.email}}</span>
+
+  </div>
+  <div class="buttons">
+    <button class="back" (click)="goBack()">back</button>
+    <button class="edit" >edit</button>
+    <button class="delete" >delete</button>
+  </div>
+</div>

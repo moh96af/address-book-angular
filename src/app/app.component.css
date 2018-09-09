@@ -1,3 +1,69 @@
 .app-title{
     text-align:center
 }
+
+.app-container{
+    max-width: 600px;
+    border: 1px solid grey;
+    margin: 0 auto;
+}
+
+.buttons {
+    display: flex;
+    margin-left: auto;
+    padding: 7px 0 7px 0;
+}
+
+.contact-details{
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-name{
+    font-size: 22px;
+}
+
+.contact-phone{
+    margin-top: 5px;
+    color: grey;
+}
+
+button.back {
+    background-color: #9D9D9D;
+}
+
+button.new {
+    background-color: #50E600;
+}
+
+button.edit {
+    background-color: #F8AA00;
+    margin-left: 15px;
+}
+
+button.delete {
+    background-color: #DB0000;
+    margin-left: 15px;
+}
+
+button {
+    border: 0;
+    font-size: 18px;
+    color: white;
+    padding: 5px;
+    width: 75px;
+    cursor: pointer;
+}
+
+.flex{
+    width: 100%;
+    display: flex;
+}
+
+.flex-column{
+    flex-direction: column;
+}
+
+.flex-row{
+    flex-direction: row;
+}

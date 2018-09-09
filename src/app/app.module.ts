@@ -4,15 +4,26 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { AppRoutingModule } from './/app-routing.module';
+import { ContactDetailComponent } from './contact-detail/contact-detail.component';
+import { ContactNewEditComponent } from './contact-new-edit/contact-new-edit.component';
+import { MessagesComponent } from './messages/messages.component';
+import { HttpClientModule } from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    ContactsComponent
+    ContactsComponent,
+    ContactDetailComponent,
+    ContactNewEditComponent,
+    MessagesComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
