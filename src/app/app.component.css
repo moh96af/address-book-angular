@@ -28,12 +28,21 @@
     color: grey;
 }
 
-button.back {
+button.back button.cancel{
+    background-color: #9D9D9D;
+}
+
+button.cancel{
     background-color: #9D9D9D;
 }
 
 button.new {
     background-color: #50E600;
+}
+
+button.save {
+    background-color: #50E600;
+    margin-left: 6px;
 }
 
 button.edit {

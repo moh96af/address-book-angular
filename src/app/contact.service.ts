@@ -17,7 +17,7 @@ const httpOptions = {
 
 export class ContactService {
 
-  private contactsApiUrl = 'http://localhost/address_book_lumen/public/api';
+  private contactsApiUrl = 'http://localhost/address_book_lumen/public/api/contacts';
 
   constructor(
     private http: HttpClient,
@@ -25,7 +25,7 @@ export class ContactService {
 
   /** GET contacts from the server */
   getContacts (): Observable<Contact[]> {
-      const url = `${this.contactsApiUrl}/contacts`;
+      const url = `${this.contactsApiUrl}`;
       return this.http.get<Contact[]>(url)
       .pipe(
         catchError(this.handleError('getContacts', []))
@@ -34,7 +34,7 @@ export class ContactService {
 
   /** GET contact by id */
   getContact(id: number): Observable<Contact> {
-    const url = `${this.contactsApiUrl}/contacts/${id}`;
+    const url = `${this.contactsApiUrl}/${id}`;
 
     return this.http.get<Contact>(url).pipe(
       catchError(this.handleError<Contact>(`getContact id=${id}`))
@@ -48,14 +48,16 @@ export class ContactService {
   //     catchError(this.handleError<Contact>('addContact'))
   //   );
   // }
-  //
-  // /** PUT: update the contact on the server */
-  // updateContact (contact: Contact): Observable<any> {
-  //   return this.http.put(this.contactsApiUrl, contact, httpOptions).pipe(
-  //     tap(_ => this.log(`updated contact id=${contact.id}`)),
-  //     catchError(this.handleError<any>('updateContact'))
-  //   );
-  // }
+
+  /** PUT: update the contact on the server */
+  updateContact (contact: Contact): Observable<any> {
+      const url = `${this.contactsApiUrl}/${contact.id}`;
+
+      return this.http.put(url, contact, httpOptions).pipe(
+      tap(_ => this.log(`updated contact id=${contact.id}`)),
+      catchError(this.handleError<any>('updateContact'))
+    );
+  }
 
   /** DELETE: delete the contact from the server */
   deleteContact (contact: Contact | number): Observable<Contact> {

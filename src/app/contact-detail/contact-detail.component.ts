@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 
 import { Contact } from '../contact';
 import { ContactService } from '../contact.service';
+import {ContactsComponent} from '../contacts/contacts.component';
 
 @Component({
   selector: 'app-contact-detail',
@@ -26,14 +27,16 @@ export class ContactDetailComponent implements OnInit {
 
   getContact(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-      console.log(this.contactService.getContact(id));
-
-      this.contactService.getContact(id)
-      .subscribe(contact => this.contact = contact);
+    this.contactService.getContact(id)
+    .subscribe(contact => this.contact = contact);
   }
 
   goBack(): void {
-      this.location.back();
+    this.location.back();
   }
 
+  delete(contact: Contact): void {
+    this.contactService.deleteContact(contact).subscribe();
+    this.getContact();
+  }
 }

@@ -1,3 +1,30 @@
-<p>
-  contact-new-edit works!
-</p>
+<div class="contacts-new-edit">
+  <form>
+    <div>
+      <label>First</label>
+      <input [(ngModel)]="contact.firstName" type="text" class="form-control" name="firstName" required value="{{contact ? contact.firstName : ''}}">
+    </div>
+
+    <div>
+      <label>Last</label>
+      <input [(ngModel)]="contact.lastName" type="text" class="form-control" name="lastName" required value="{{contact ? contact.lastName : ''}}">
+    </div>
+
+    <div>
+      <label>Phone</label>
+      <input [(ngModel)]="contact.phone" type="text" class="form-control" name="phone" required value="{{contact ? contact.phone : ''}}">
+    </div>
+
+    <div>
+      <label>Email</label>
+      <input [(ngModel)]="contact.email" type="text" class="form-control" name="email" value="{{contact ? contact.email : ''}}" required>
+    </div>
+    <div class="flex">
+      <div class="buttons">
+        <button class="cancel" (click)="cancel()">cancel</button>
+        <button (click)="update()" type="submit" class="save">save</button>
+      </div>
+    </div>
+
+  </form>
+</div>
