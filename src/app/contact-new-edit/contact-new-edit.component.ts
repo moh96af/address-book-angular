@@ -3,6 +3,7 @@ import {Contact} from '../contact';
 import {Location} from '@angular/common';
 import {ContactService} from '../contact.service';
 import {ActivatedRoute} from '@angular/router';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-contact-new-edit',
@@ -10,16 +11,19 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./contact-new-edit.component.css', '../app.component.css']
 })
 export class ContactNewEditComponent implements OnInit {
-  @Input() contact: Contact;
+  contact: Contact;
+  addForm: FormGroup;
 
-    constructor(
-        private route: ActivatedRoute,
-        private contactService: ContactService,
-        private location: Location
-    ) { }
+  constructor(
+    private route: ActivatedRoute,
+    private contactService: ContactService,
+    private location: Location,
+    private formBuilder: FormBuilder
+  ) { }
 
   ngOnInit() {
     this.getContact();
+    this.createForm();
   }
 
   cancel(): void {
@@ -27,21 +31,46 @@ export class ContactNewEditComponent implements OnInit {
   }
 
   update(): void {
-    this.contactService.updateContact(this.contact)
+    this.contactService.updateContact(this.addForm.value, this.contact.id)
       .subscribe(() => this.cancel());
   }
 
   getContact(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.contactService.getContact(id)
-      .subscribe(contact => this.contact = contact);
+      .subscribe(contact => this.updateForm(contact));
   }
 
-  // add(name: string): void {
-  //   console.log(name);
-  //   // name = name.trim();
-  //   // if (!name) { return; }
-  //   // this.contactService.addContact({ contact } as Contact)
-  //   //   .subscribe(this.contact);
-  // }
+  onSubmit() {
+    if (this.contact.id) {
+      this.update();
+    } else {
+      this.addContact();
+    }
+  }
+
+  createForm(){
+    this.addForm = this.formBuilder.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      phone: ['', Validators.required],
+      email: ['', Validators.required],
+    });
+  }
+
+  updateForm(contact: Contact) {
+    this.contact = contact;
+    this.addForm.setValue({
+      firstName: contact.firstName,
+      lastName: contact.lastName,
+      phone: contact.phone,
+      email: contact.email
+    });
+  }
+
+  addContact() {
+      this.contactService.addContact(this.addForm.value)
+        .subscribe(() => this.cancel());
+  }
+
 }

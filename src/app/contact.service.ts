@@ -41,17 +41,17 @@ export class ContactService {
     );
   }
 
-  // /** POST: add a new contact to the server */
-  // addContact (contact: Contact): Observable<Contact> {
-  //   return this.http.post<Contact>(this.contactsApiUrl, contact, httpOptions).pipe(
-  //     tap((contact: Contact) => this.log(`added contact w/ id=${contact.id}`)),
-  //     catchError(this.handleError<Contact>('addContact'))
-  //   );
-  // }
+  /** POST: add a new contact to the server */
+  addContact (contact: Contact): Observable<Contact> {
+    return this.http.post<Contact>(this.contactsApiUrl, contact, httpOptions).pipe(
+      tap(_ => this.log(`added contact w/ id=${contact.id}`)),
+      catchError(this.handleError<Contact>('addContact'))
+    );
+  }
 
   /** PUT: update the contact on the server */
-  updateContact (contact: Contact): Observable<any> {
-      const url = `${this.contactsApiUrl}/${contact.id}`;
+  updateContact (contact: Contact, id: number): Observable<any> {
+      const url = `${this.contactsApiUrl}/${id}`;
 
       return this.http.put(url, contact, httpOptions).pipe(
       tap(_ => this.log(`updated contact id=${contact.id}`)),
@@ -86,6 +86,6 @@ export class ContactService {
 
   /** Log a ContactService message with the MessageService */
   private log(message: string) {
-    this.messageService.add(`ContactService: ${message}`);
+    this.messageService.add(`${message}`);
   }
 }

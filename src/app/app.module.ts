@@ -8,7 +8,7 @@ import { ContactDetailComponent } from './contact-detail/contact-detail.componen
 import { ContactNewEditComponent } from './contact-new-edit/contact-new-edit.component';
 import { MessagesComponent } from './messages/messages.component';
 import { HttpClientModule } from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -24,6 +24,7 @@ import {FormsModule} from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

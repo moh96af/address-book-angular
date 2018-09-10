@@ -24,6 +24,6 @@ export class ContactsComponent implements OnInit {
 
   delete(contact: Contact): void {
       this.contacts = this.contacts.filter(c => c !== contact);
-      // this.contactService.deleteContact(contact).subscribe();
+      this.contactService.deleteContact(contact).subscribe();
   }
 }

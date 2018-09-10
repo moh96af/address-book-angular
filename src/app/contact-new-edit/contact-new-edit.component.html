@@ -1,28 +1,27 @@
 <div class="contacts-new-edit">
-  <form>
+  <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
     <div>
       <label>First</label>
-      <input [(ngModel)]="contact.firstName" type="text" class="form-control" name="firstName" required value="{{contact ? contact.firstName : ''}}">
+      <input formControlName="firstName" type="text" class="form-control" name="firstName" >
     </div>
 
     <div>
       <label>Last</label>
-      <input [(ngModel)]="contact.lastName" type="text" class="form-control" name="lastName" required value="{{contact ? contact.lastName : ''}}">
+      <input formControlName="lastName" type="text" class="form-control" name="lastName" >
     </div>
 
     <div>
       <label>Phone</label>
-      <input [(ngModel)]="contact.phone" type="text" class="form-control" name="phone" required value="{{contact ? contact.phone : ''}}">
+      <input formControlName="phone" type="text" class="form-control" name="phone">
     </div>
-
     <div>
       <label>Email</label>
-      <input [(ngModel)]="contact.email" type="text" class="form-control" name="email" value="{{contact ? contact.email : ''}}" required>
+      <input formControlName="email" type="text" class="form-control" name="email">
     </div>
     <div class="flex">
       <div class="buttons">
-        <button class="cancel" (click)="cancel()">cancel</button>
-        <button (click)="update()" type="submit" class="save">save</button>
+        <button class="cancel" (click)="cancel()" type="reset">cancel</button>
+        <button type="submit" class="save" [disabled]="!addForm.valid">save</button>
       </div>
     </div>
 
