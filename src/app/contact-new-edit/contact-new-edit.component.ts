@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Contact} from '../contact';
 import {Location} from '@angular/common';
 import {ContactService} from '../contact.service';
@@ -13,6 +13,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 export class ContactNewEditComponent implements OnInit {
   contact: Contact;
   addForm: FormGroup;
+  submitted = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -42,7 +43,14 @@ export class ContactNewEditComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.contact.id) {
+      this.submitted = true;
+
+      // stop here if form is invalid
+      if (this.addForm.invalid) {
+          return;
+      }
+
+      if (this.contact.id) {
       this.update();
     } else {
       this.addContact();
@@ -50,15 +58,12 @@ export class ContactNewEditComponent implements OnInit {
   }
 
   createForm(){
-    this.addForm = this.formBuilder.group({
-        'lastName': new FormControl('', [
-            Validators.required,
-            Validators.minLength(4)
-        ]),
-      firstName: ['', Validators.required],
-      phone: ['', Validators.required],
-      email: ['', Validators.required],
-    });
+      this.addForm = this.formBuilder.group({
+          lastName: ['', Validators.required],
+          firstName: ['', Validators.required],
+          phone: ['', [Validators.required]],
+          email: ['', [Validators.required, Validators.email]]
+      });
   }
 
   updateForm(contact: Contact) {
@@ -77,5 +82,7 @@ export class ContactNewEditComponent implements OnInit {
       this.contactService.addContact(this.addForm.value)
         .subscribe(() => this.cancel());
   }
+
+  get f() { return this.addForm.controls; }
 
 }

@@ -2,21 +2,34 @@
   <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
     <div>
       <label>First</label>
-      <input formControlName="firstName" type="text" class="form-control" name="firstName" >
+      <input formControlName="firstName" type="text" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }">
+      <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+        <div *ngIf="f.firstName.errors.required">First Name is required</div>
+      </div>
     </div>
 
     <div>
       <label>Last</label>
-      <input formControlName="lastName" type="text" class="form-control" name="lastName" >
+      <input formControlName="lastName" type="text" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" >
+      <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+        <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+      </div>
     </div>
 
     <div>
       <label>Phone</label>
-      <input formControlName="phone" type="text" class="form-control" name="phone">
+      <input formControlName="phone" type="text" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }">
+      <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+        <div *ngIf="f.phone.errors.required">Phone is required</div>
+      </div>
     </div>
     <div>
       <label>Email</label>
-      <input formControlName="email" type="text" class="form-control" name="email">
+      <input formControlName="email" type="text" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" >
+      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+        <div *ngIf="f.email.errors.required">Email is required</div>
+        <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+      </div>
     </div>
     <div class="flex">
       <div class="buttons">
@@ -24,6 +37,6 @@
         <button type="submit" class="save">save</button>
       </div>
     </div>
-<!-- [disabled]="!addForm.valid"-->
   </form>
 </div>
+
