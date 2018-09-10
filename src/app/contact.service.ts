@@ -44,7 +44,7 @@ export class ContactService {
   /** POST: add a new contact to the server */
   addContact (contact: Contact): Observable<Contact> {
     return this.http.post<Contact>(this.contactsApiUrl, contact, httpOptions).pipe(
-      tap(_ => this.log(`added contact w/ id=${contact.id}`)),
+      tap(_ => this.log(`Contact Created Successfully`)),
       catchError(this.handleError<Contact>('addContact'))
     );
   }
@@ -54,7 +54,7 @@ export class ContactService {
       const url = `${this.contactsApiUrl}/${id}`;
 
       return this.http.put(url, contact, httpOptions).pipe(
-      tap(_ => this.log(`updated contact id=${contact.id}`)),
+      tap(_ => this.log(`Contact Updated Successfully`)),
       catchError(this.handleError<any>('updateContact'))
     );
   }
@@ -65,7 +65,7 @@ export class ContactService {
     const url = `${this.contactsApiUrl}/${id}`;
 
     return this.http.delete<Contact>(url, httpOptions).pipe(
-      tap(_ => this.log(`deleted contact id=${id}`)),
+      tap(_ => this.log(`Contact Deleted Successfully`)),
       catchError(this.handleError<Contact>('deleteContact'))
     );
   }
@@ -86,6 +86,7 @@ export class ContactService {
 
   /** Log a ContactService message with the MessageService */
   private log(message: string) {
+    this.messageService.clear();
     this.messageService.add(`${message}`);
   }
 }

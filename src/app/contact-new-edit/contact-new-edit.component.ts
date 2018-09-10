@@ -51,8 +51,11 @@ export class ContactNewEditComponent implements OnInit {
 
   createForm(){
     this.addForm = this.formBuilder.group({
+        'lastName': new FormControl('', [
+            Validators.required,
+            Validators.minLength(4)
+        ]),
       firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
       phone: ['', Validators.required],
       email: ['', Validators.required],
     });
@@ -60,12 +63,14 @@ export class ContactNewEditComponent implements OnInit {
 
   updateForm(contact: Contact) {
     this.contact = contact;
-    this.addForm.setValue({
-      firstName: contact.firstName,
-      lastName: contact.lastName,
-      phone: contact.phone,
-      email: contact.email
-    });
+      if (this.contact.id) {
+        this.addForm.setValue({
+          firstName: contact.firstName,
+          lastName: contact.lastName,
+          phone: contact.phone,
+          email: contact.email
+        });
+      }
   }
 
   addContact() {
