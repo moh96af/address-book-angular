@@ -17,7 +17,7 @@ const httpOptions = {
 
 export class ContactService {
 
-  private contactsApiUrl = 'http://localhost/address_book_lumen/public/api/contacts';
+  private contactsApiUrl = 'http://18.195.117.130/address_book_lumen/public/api/contacts';
 
   constructor(
     private http: HttpClient,
